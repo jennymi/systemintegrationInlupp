@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+    table, th, td {
+  border: 1px solid black;
+  text-align: center;
+}
+body {
+  background-color: lightblue;
+}
+
+h1 {
+  color: white;
+  text-align: center;
+}
+
+p {
+  font-family: verdana;
+  font-size: 40px;
+}
+
+h2, table {
+    text-align: center;
+}
+
+</style>
+</head>
+<body>
+ 
+<h1>----- DASHBOARD ----- </>
+<p>Temperature:  </p>
+<p>Humidity:  </p>
+   
+    <h2> 10 Latest Temperature & Humidity</h2>
+    <center>
+<table>
+  <tr>
+    <th>Temperature: </th>
+    <th>Humidity: </th>
+  </tr>
+  <tr>
+    <td>Temperature Here: </td>
+    <td>Humidity Here: </td>
+  </tr>
+  <tr>
+    <td>Temperature 2 here: </td>
+    <td>Humidity 2 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 3 here: </td>
+    <td>Humidity 3 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 4 here: </td>
+    <td>Humidity 4 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 5 here: </td>
+    <td>Humidity 5 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 6 here: </td>
+    <td>Humidity 6 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 7 here: </td>
+    <td>Humidity 7 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 8 here: </td>
+    <td>Humidity 8 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 9 here: </td>
+    <td>Humidity 9 here: </td>
+  </tr>
+    <tr>
+    <td>Temperature 10 here: </td>
+    <td>Humidity 10 here: </td>
+  </tr>
+</table>
+    </center>
+</body>
+</html>
+
+<script>
+      var clientID = "ID-" + Math.round(Math.random() * 1000);
+      var client = new Paho.MQTT.Client("192.168.0.18", 9001, clientID);
+
+      client.connect({onSuccess:onConnect});
+
+      function onConnect() {
+        console.log("connected");
+      }
+		function show_me() {
+			//alert(this.value + ' was clicked'); // this references the element which the click event was invoked on.
+
+			var message = new Paho.MQTT.Message("q" + this.value);
+			message.destinationName = "home/skyq";
+			client.send(message);
+                        </script>
+
+
+
