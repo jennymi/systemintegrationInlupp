@@ -30,15 +30,15 @@ import javax.websocket.server.ServerEndpoint;
 
 @ServerEndpoint(value = "/device", decoders = MessageDecoder.class, encoders = MessageEncoder.class)
 public class DeviceEndpoint {
-    private Session session;
+    public Session session;
     private static final Set<DeviceEndpoint> endpoints = new CopyOnWriteArraySet<>();
-    private static List<String> users = new ArrayList<>();
+    //private static List<String> users = new ArrayList<>();
     @OnOpen
     public void onOpen(Session session) 
             throws IOException, EncodeException {
         this.session = session;
         endpoints.add(this);
-        users.add(session.getId());
+      //  users.add(session.getId());
 
         Message message = new Message();
         message.setTemperature("20");
