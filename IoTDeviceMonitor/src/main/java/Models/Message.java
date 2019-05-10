@@ -12,7 +12,7 @@ package Models;
 public class Message {
     private String from;
     private String to;
-    private String content;
+    private String temperature;
 
     @Override
     public String toString() {
@@ -34,12 +34,12 @@ public class Message {
     public void setTo(String to) {
         this.to = to;
     }
-
-    public String getContent() {
-        return content;
+public String getTemperature() {
+        return temperature;
     }
 
-    public void setContent(String content) {
-        this.content = content;
+    public void setTemperature(String temperature) {
+        this.temperature = temperature;
     }
+    
 }

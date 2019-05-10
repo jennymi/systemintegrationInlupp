@@ -41,7 +41,7 @@ public class DeviceEndpoint {
         users.add(session.getId());
 
         Message message = new Message();
-        message.setContent("Connected!");
+        message.setTemperature("20");
         broadcast(message);
     }
 
@@ -56,10 +56,6 @@ public class DeviceEndpoint {
     @OnClose
     public void onClose(Session session) throws IOException, EncodeException {
         endpoints.remove(this);
-        Message message = new Message();
-        //message.setFrom(users.get(session.getId()));
-        message.setContent("Disconnected!");
-        broadcast(message);
     }
 
     @OnError
