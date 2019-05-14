@@ -16,6 +16,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -31,31 +32,45 @@ import javax.websocket.server.ServerEndpoint;
 @ServerEndpoint(value = "/device", decoders = MessageDecoder.class, encoders = MessageEncoder.class)
 public class DeviceEndpoint {
     public Session session;
-    private static final Set<DeviceEndpoint> endpoints = new CopyOnWriteArraySet<>();
-    //private static List<String> users = new ArrayList<>();
+    private static final Set<DeviceEndpoint> clientEndpoints = new CopyOnWriteArraySet<>();
+    private static MqttListener mqtt = new MqttListener("m24.cloudmqtt.com", "12530", "ofqhaueq", "c6lwyXwW_8AQ", clientEndpoints);
+    private static SQLDao db = new SQLDao();
     @OnOpen
     public void onOpen(Session session) 
             throws IOException, EncodeException {
         this.session = session;
-        endpoints.add(this);
+        clientEndpoints.add(this);
+        mqtt.addEndpoint(this);
       //  users.add(session.getId());
 
-        Message message = new Message();
-        message.setTemperature("20");
-        broadcast(message);
+       // Message message = new Message();
+       // message.setTemperature("20");
+       // broadcast(message);
     }
 
     @OnMessage
     public void onMessage(Session session, Message message) throws IOException, EncodeException {
-        if (endpoints.contains(this)){
+        if (clientEndpoints.contains(this)){
            // message.setFrom(users.get(session.getId()));
-            broadcast(message);
+            System.out.println("message arrived from websocket: " + message.getDevice());
+            if (Objects.equals(message.getDevice(), "list")) {
+            // lista ut varför denna inte funkar ^
+                System.out.println("list equals");
+            Message ret = db.getDBList();
+                System.out.println("sending message: " + ret);
+            ret = new Message();
+            ret.setTemperature("45");
+                //broadcast(ret);
+                session.getBasicRemote().sendObject(ret);
+            }
+            //broadcast(message);
         }
     }
     
     @OnClose
     public void onClose(Session session) throws IOException, EncodeException {
-        endpoints.remove(this);
+        clientEndpoints.remove(this);
+        mqtt.removeEndpoint(this);
     }
 
     @OnError
@@ -65,7 +80,7 @@ public class DeviceEndpoint {
 
     private static void broadcast(Message message) 
             throws IOException, EncodeException {
-        endpoints.forEach(endpoint -> {
+        clientEndpoints.forEach(endpoint -> {
             synchronized (endpoint) {
                 try {
                     endpoint.session.getBasicRemote()

@@ -94,29 +94,12 @@ public class MqttListener implements MqttCallback{
         System.out.println(String.format("[%s] %s", topic, new String(message.getPayload())));
         
         String jsonstring = new String(message.getPayload());
-       // ret.setContent(new String(message.getPayload()));
-       // ret.setFrom(topic);
-        //broadcast(ret);
         Gson gson = new Gson();
         Message tempdata = gson.fromJson(jsonstring, Message.class);
         broadcast(tempdata);
-        //Message result = new Message();
-       // System.out.println("test before mysql query update xxxxxxxx");
-//       Set<Thread> threads = Thread.getAllStackTraces().keySet();
-// 
-//        for (Thread t : threads) {
-//            String name = t.getName();
-//            Thread.State state = t.getState();
-//            int priority = t.getPriority();
-//            String type = t.isDaemon() ? "Daemon" : "Normal";
-//            System.out.printf("%-20s \t %s \t %d \t %s\n", name, state, priority, type);
-//        }
-       // String query = "INSERT INTO DHT11sensor (temperature, humidity, deviceid) VALUES ('"+tempdata.getTemperature()+"', '"+tempdata.getHumidity()+"', '"+tempdata.getDeviceid()+"');";
-       // Float res = (float) db.executeSQLUpdate(query);
-       // System.out.println("sql result: " + res);
-        //result.setTemperature(res);
-       // ret.setContent(result.toString());
-        //broadcast(result);
+        String query = "INSERT INTO DHT11sensor (temperature, humidity, deviceid) VALUES ('"+tempdata.getTemperature()+"', '"+tempdata.getHumidity()+"', '"+tempdata.getId()+"');";
+        Float res = (float) db.executeSQLUpdate(query);
+        System.out.println("sql result: " + res);
     }
     public void setMsgNull(){
         this.message = null;
