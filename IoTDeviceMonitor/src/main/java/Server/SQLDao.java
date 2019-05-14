@@ -38,6 +38,8 @@ public class SQLDao {
                     data.setTemperature(rs.getString("temperature"));
                     data.setHumidity(rs.getString("humidity"));
                     data.setCreated(rs.getString("created"));
+                    
+                    System.out.println("Id: "+ data.getId()+ ". Temp: " +data.getTemperature()+ ". Hum: " +data.getHumidity()+ ". Created: " +data.getCreated());
                     msg.addToList(data);
                 } while (rs.next());
                 
