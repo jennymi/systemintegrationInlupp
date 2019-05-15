@@ -37,10 +37,11 @@ function getList(){
 }
 
 function printList(list){
-    var text = "<table><tr><th>Temperature </th><th>Humidity </th></tr></table>";
+    var text = "<table ><thead><tr><th>Temperatur </th><th>Luftfuktighet </th><th>Tidsstämpel </th></tr></thead>";
     for(var i=0; i<10; i++){
-        text += "<tr><td>Temperature is: "+list[i].temperature+" </td><td>Humidity is: "+list[i].humidity+"</td><td>Humidity is: "+list[i].created+"</td></tr>"+"<br>"
+        text += "<tbody><tr><td>"+list[i].temperature+" </td><td>"+list[i].humidity+"</td><td>"+list[i].created+"</td></tr></tbody>";
     }
+    text +=  "</table>";
     document.getElementById("printList").innerHTML = text;
 }
 window.onbeforeunload = function() {

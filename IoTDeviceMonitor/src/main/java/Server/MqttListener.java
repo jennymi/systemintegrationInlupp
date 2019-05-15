@@ -99,8 +99,8 @@ public class MqttListener implements MqttCallback{
         System.out.println(tempdata.getDevice());
         broadcast(tempdata);
         String query = "INSERT INTO DHT11sensor (temperature, humidity, deviceid) VALUES ('"+tempdata.getTemperature()+"', '"+tempdata.getHumidity()+"', '"+tempdata.getDevice()+"');";
-        Float res = (float) db.executeSQLUpdate(query);
-        System.out.println("sql result: " + res);
+        //Float res = (float) db.executeSQLUpdate(query);
+        //System.out.println("sql result: " + res);
     }
     public void setMsgNull(){
         this.message = null;
