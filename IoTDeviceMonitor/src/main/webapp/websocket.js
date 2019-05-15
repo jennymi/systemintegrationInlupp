@@ -35,6 +35,22 @@ function getList(){
     });
     ws.send(json);
 }
+
+function printList(){
+    console.log("getting list");
+    var json = JSON.stringify({
+        "device":"list"
+    });
+    var text = "";
+    var temp = 23;
+    var hum = 43;
+    for(var i=0; i<10; i++){
+        text += "<table><tr><th>Temperature </th><th>Humidity </th></tr><tr><td>Temperature is: "+temp+" </td><td>Humidity is: "+hum+"</td></tr></table>"+"<br>"
+    }
+    document.getElementById("printList").innerHTML = text;
+    
+    ws.send(json);
+}
 window.onbeforeunload = function() {
     ws.onclose = function () {}; // disable onclose handler first
     ws.close();
