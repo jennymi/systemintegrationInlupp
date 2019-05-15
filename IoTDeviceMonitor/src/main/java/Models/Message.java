@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -71,6 +72,10 @@ public class Message {
 
     public void setTemperature(String temperature) {
         this.temperature = temperature;
+    }
+    
+    public void initList(){
+        this.table = new ArrayList<>();
     }
 
 }
