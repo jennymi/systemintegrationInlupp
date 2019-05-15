@@ -49,17 +49,34 @@ window.onload = function(){
             console.log("loading chart");
             loadChart(message.table);
         }else{
-           var temp = document.getElementById("tempicon");
-           var tempdec = document.getElementById("tempdecimal");
+          
            var splittedtemp = message.temperature.split(".");
-           temp.innerHTML = message.temperature;
-          // tempdec.innerHTML = "."+splittedtemp[1];
+           var temp = {first: splittedtemp[0], dec: splittedtemp[1]};
+           loadTempIcon(temp);
+           var splittedhumid = message.humidity.split(".");
+           
+           var humid = {first: splittedhumid[0], dec: splittedhumid[1]};
+           loadHumidIcon(humid);
+          
            
         }
        // log.innerHTML = message.temperature;
        
     };
 };
+function loadHumidIcon(humids){
+    
+    var temp = document.getElementById("humidicon");
+    temp.innerHTML = ((humids.first !== null) ? humids.first : 0)+"<span id='humiddecimal'>.0</span><strong>&deg;</strong>";
+    var tempdec = document.getElementById("humiddecimal");
+    tempdec.innerHTML = "."+((humids.dec < 1) ? humids.dec : 0);
+}
+function loadTempIcon(temps){
+    var temp = document.getElementById("tempicon");
+    temp.innerHTML = ((temps.first.length > 0) ? temps.first : 0)+"<span id='tempdecimal'>.9</span><strong>&deg;</strong>";
+    var tempdec = document.getElementById("tempdecimal");
+    tempdec.innerHTML = "."+((temps.dec.length > 0) ? temps.dec : 0);
+}
 
 function loadChart(data){
     am4core.useTheme(am4themes_animated);

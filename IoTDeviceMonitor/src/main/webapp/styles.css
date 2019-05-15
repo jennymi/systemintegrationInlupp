@@ -32,7 +32,19 @@ and open the template in the editor.
   
 html, body { height: 100%; }
 body { background: #f2f2f2; }
-
+.wrapper {
+    width: 600px;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  width: 40%;
+}
+.first {
+    width: 300px;
+}
+.second {
+  width: 300px;
+}
 .container { width: 300px; margin: 10px auto 0; }
 .de .den, .de .dene, .de .denem, .de .deneme { position: absolute;  left: 50%; top: 50%; }
 .de {

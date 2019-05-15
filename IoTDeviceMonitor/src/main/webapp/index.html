@@ -3,84 +3,102 @@
     <head>
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>Start Page</title>
-            <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
     </head>
     <body>
         <h1>----- DASHBOARD ----- </h1>
-        <p>Temperature:  </p>
-        <div class="container">
-    <div class="de">
-        <div class="den">
-          <div class="dene">
-            <div class="denem">
-              <div class="deneme" id="tempicon">
-                23<span id="tempdecimal">.9</span><strong>&deg;</strong>
-              </div>
+        <div class ="wrapper">
+            <div class="container first">
+                <h1>Temperatur:</h1>
+                <div class="de">
+                    <div class="den">
+                        <div class="dene">
+                            <div class="denem">
+                                <div class="deneme" id="tempicon">
+                                    0<span id="tempdecimal">.0</span><strong>&deg;</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
             </div>
-          </div>
+            <div class="container second">
+                <h1>Luftfuktighet:</h1>
+                <div class="de">
+                    <div class="den">
+                        <div class="dene">
+                            <div class="denem">
+                                <div class="deneme" id="humidicon">
+                                    0<span>.0</span><strong>%</strong>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
         </div>
-    </div>
-</div>
         <p id="log"></p>
         <button onclick="getList();"> get list! </button>
         <div id="chartdiv"></div>
-        <p>Humidity:  </p>
 
-            <h2> 10 Latest Temperature & Humidity</h2>
-            <center>
+        <h2> 10 Latest Temperature & Humidity</h2>
+    <center>
         <table>
-          <tr>
-            <th>Temperature: </th>
-            <th>Humidity: </th>
-          </tr>
-          <tr>
-            <td>Temperature Here: </td>
-            <td>Humidity Here: </td>
-          </tr>
-          <tr>
-            <td>Temperature 2 here: </td>
-            <td>Humidity 2 here: </td>
-          </tr>
             <tr>
-            <td>Temperature 3 here: </td>
-            <td>Humidity 3 here: </td>
-          </tr>
+                <th>Temperature: </th>
+                <th>Humidity: </th>
+            </tr>
             <tr>
-            <td>Temperature 4 here: </td>
-            <td>Humidity 4 here: </td>
-          </tr>
+                <td>Temperature Here: </td>
+                <td>Humidity Here: </td>
+            </tr>
             <tr>
-            <td>Temperature 5 here: </td>
-            <td>Humidity 5 here: </td>
-          </tr>
+                <td>Temperature 2 here: </td>
+                <td>Humidity 2 here: </td>
+            </tr>
             <tr>
-            <td>Temperature 6 here: </td>
-            <td>Humidity 6 here: </td>
-          </tr>
+                <td>Temperature 3 here: </td>
+                <td>Humidity 3 here: </td>
+            </tr>
             <tr>
-            <td>Temperature 7 here: </td>
-            <td>Humidity 7 here: </td>
-          </tr>
+                <td>Temperature 4 here: </td>
+                <td>Humidity 4 here: </td>
+            </tr>
             <tr>
-            <td>Temperature 8 here: </td>
-            <td>Humidity 8 here: </td>
-          </tr>
+                <td>Temperature 5 here: </td>
+                <td>Humidity 5 here: </td>
+            </tr>
             <tr>
-            <td>Temperature 9 here: </td>
-            <td>Humidity 9 here: </td>
-          </tr>
+                <td>Temperature 6 here: </td>
+                <td>Humidity 6 here: </td>
+            </tr>
             <tr>
-            <td>Temperature 10 here: </td>
-            <td>Humidity 10 here: </td>
-          </tr>
+                <td>Temperature 7 here: </td>
+                <td>Humidity 7 here: </td>
+            </tr>
+            <tr>
+                <td>Temperature 8 here: </td>
+                <td>Humidity 8 here: </td>
+            </tr>
+            <tr>
+                <td>Temperature 9 here: </td>
+                <td>Humidity 9 here: </td>
+            </tr>
+            <tr>
+                <td>Temperature 10 here: </td>
+                <td>Humidity 10 here: </td>
+            </tr>
         </table>
-            </center>
-        
-        <script src="https://www.amcharts.com/lib/4/core.js"></script>
-        <script src="https://www.amcharts.com/lib/4/charts.js"></script>
-        <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
-        <script src="websocket.js"></script>
-    </body>
+    </center>
+
+    <script src="https://www.amcharts.com/lib/4/core.js"></script>
+    <script src="https://www.amcharts.com/lib/4/charts.js"></script>
+    <script src="https://www.amcharts.com/lib/4/themes/animated.js"></script>
+    <script src="websocket.js"></script>
+</body>
 </html>
 

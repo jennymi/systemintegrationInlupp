@@ -41,11 +41,6 @@ public class DeviceEndpoint {
         this.session = session;
         clientEndpoints.add(this);
         mqtt.addEndpoint(this);
-      //  users.add(session.getId());
-
-       // Message message = new Message();
-       // message.setTemperature("20");
-       // broadcast(message);
     }
 
     @OnMessage
@@ -78,17 +73,4 @@ public class DeviceEndpoint {
         // Do error handling here
     }
 
-    private static void broadcast(Message message) 
-            throws IOException, EncodeException {
-        clientEndpoints.forEach(endpoint -> {
-            synchronized (endpoint) {
-                try {
-                    endpoint.session.getBasicRemote()
-                        .sendObject(message);
-                } catch (IOException | EncodeException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
-    }
 }
