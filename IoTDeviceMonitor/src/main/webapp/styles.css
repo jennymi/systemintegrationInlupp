@@ -8,30 +8,7 @@ and open the template in the editor.
     Author     : gusta
 */
   @import url(https://fonts.googleapis.com/css?family=Dosis:200,400,500,600);
-    table, th, td {
-          border: 1px solid black;
-          text-align: center;
-        }
-        body {
-          background-color: lightblue;
-        }
-
-        h1 {
-          color: white;
-          text-align: center;
-        }
-
-        p {
-          font-family: verdana;
-          font-size: 40px;
-        }
-
-        h2, table {
-            text-align: center;
-        }
-  
-html, body { height: 100%; }
-body { background: #f2f2f2; }
+    
 .wrapper {
     width: 600px;
   display: flex;

@@ -4,10 +4,15 @@
         <link rel="stylesheet" type="text/css" href="styles.css">
         <title>Start Page</title>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     </head>
     <body>
-        <h1>----- DASHBOARD ----- </h1>
+
+      <div class="jumbotron text-center">
+  <h1>IoT DashBoard</h1>
+</div>
         <div class ="wrapper">
             <div class="container first">
                 <h1>Temperatur:</h1>
@@ -44,10 +49,12 @@
         <p id="log"></p>
         
         <div id="chartdiv"></div>
+
     <center>
         <button class="btnStyle" onclick="getList();"> Klicka för att visa senaste sensor-värden </button>
         <p id="printList"></p>
     </center>
+     <div id="chartdiv"></div>
 
     <script src="https://www.amcharts.com/lib/4/core.js"></script>
     <script src="https://www.amcharts.com/lib/4/charts.js"></script>
