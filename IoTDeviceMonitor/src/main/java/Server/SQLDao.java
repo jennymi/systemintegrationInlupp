@@ -19,24 +19,34 @@ import java.util.Date;
 public class SQLDao {
     
     public Message getDBList(){
-        System.out.println("getdbList is going");
         Message msg = new Message();
-        msg.setDevice("list");
+        msg.initList();
+        ResultSet rs = null;
+        msg.setId("list");
         String query = "SELECT DHT11sensor.id, DHT11sensor.temperature, DHT11sensor.humidity, DHT11sensor.created, Devices.devicename FROM sysint.DHT11sensor\n" +
         "inner join Devices on Devices.id = DHT11sensor.deviceid \n" +
         "order by DHT11sensor.created DESC LIMIT 50;";
-        try {
-            ResultSet rs = executeSQLQuery(query);
-            System.out.println("got the resultset");
+        try{
+        Class.forName("com.mysql.cj.jdbc.Driver");
+        }catch(ClassNotFoundException e){
+            e.printStackTrace();
+        }
+        try (Connection con = DriverManager.getConnection(
+                "jdbc:mysql://sysintinstance.c3ftwz9lwjxd.us-east-1.rds.amazonaws.com:3306/sysint?serverTimezone=UTC&useSSL=false",
+               "gustafeden",
+                "SecurePassword!");
+                PreparedStatement stmt = con.prepareStatement(query);) {
+            rs = stmt.executeQuery();
             if (!rs.next()) {
                 msg.setTemperature("null");
             }else{
+                msg.setDevice(rs.getString("devicename"));
                 do {                    
                     Message data = new Message();
-                    data.setId(rs.getString("id"));
-                    data.setDevice(rs.getString("devicename"));
+                   // data.setId(rs.getString("id"));
+                    //data.setDevice(rs.getString("devicename"));
                     data.setTemperature(rs.getString("temperature"));
-                    data.setHumidity(rs.getString("humidity"));
+                   // data.setHumidity(rs.getString("humidity"));
                     data.setCreated(rs.getString("created"));
                     msg.addToList(data);
                 } while (rs.next());
@@ -50,28 +60,6 @@ public class SQLDao {
         return msg;
     }
     
-     public ResultSet executeSQLQuery(String query) {
-        ResultSet rs = null;
-        CachedRowSetImpl crs = null;
-         try{
-        Class.forName("com.mysql.cj.jdbc.Driver");
-        }catch(ClassNotFoundException e){
-            e.printStackTrace();
-        }
-        try (Connection con = DriverManager.getConnection(
-                "jdbc:mysql://sysintinstance.c3ftwz9lwjxd.us-east-1.rds.amazonaws.com:3306/sysint?serverTimezone=UTC&useSSL=false",
-               "gustafeden",
-                "SecurePassword!");
-                PreparedStatement stmt = con.prepareStatement(query);) {
-            rs = stmt.executeQuery();
-            crs = new CachedRowSetImpl();
-            crs.populate(rs);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return crs;
-    }
-
     public int executeSQLUpdate(String query) {
         int result = 0;
          try{

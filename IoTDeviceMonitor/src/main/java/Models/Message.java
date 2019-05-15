@@ -5,6 +5,7 @@
  */
 package Models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,6 +17,9 @@ public class Message {
     private String temperature, humidity, created, id, device;
     private List<Message> table;
 
+    public void initList(){
+        this.table = new ArrayList<>();
+    }
     public String getId() {
         return id;
     }

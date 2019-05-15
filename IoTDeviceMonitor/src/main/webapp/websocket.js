@@ -45,7 +45,8 @@ window.onload = function(){
         console.log("message arrived");
         var log = document.getElementById("log");
         var message = JSON.parse(event.data);
-        if(message.device == "list"){
+        console.log(message.device);
+        if(message.id === "list"){
             console.log("loading chart");
             loadChart(message.table);
         }

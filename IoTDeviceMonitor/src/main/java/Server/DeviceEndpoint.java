@@ -54,12 +54,10 @@ public class DeviceEndpoint {
            // message.setFrom(users.get(session.getId()));
             System.out.println("message arrived from websocket: " + message.getDevice());
             if (Objects.equals(message.getDevice(), "list")) {
-            // lista ut varför denna inte funkar ^
-                System.out.println("list equals");
+               // System.out.println("list equals");
             Message ret = db.getDBList();
-                System.out.println("sending message: " + ret);
-            ret = new Message();
-            ret.setTemperature("45");
+                System.out.println("sending message: " + ret.getDevice());
+           
                 //broadcast(ret);
                 session.getBasicRemote().sendObject(ret);
             }
