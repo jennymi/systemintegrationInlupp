@@ -97,7 +97,7 @@ public class MqttListener implements MqttCallback{
         Gson gson = new Gson();
         Message tempdata = gson.fromJson(jsonstring, Message.class);
         broadcast(tempdata);
-        String query = "INSERT INTO DHT11sensor (temperature, humidity, deviceid) VALUES ('"+tempdata.getTemperature()+"', '"+tempdata.getHumidity()+"', '"+tempdata.getId()+"');";
+        String query = "INSERT INTO DHT11sensor (temperature, humidity, deviceid) VALUES ('"+tempdata.getTemperature()+"', '"+tempdata.getHumidity()+"', '"+Integer.parseInt(tempdata.getId())+"');";
         Float res = (float) db.executeSQLUpdate(query);
         System.out.println("sql result: " + res);
     }

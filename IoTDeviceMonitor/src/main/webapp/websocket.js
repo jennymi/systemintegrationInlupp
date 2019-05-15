@@ -48,8 +48,16 @@ window.onload = function(){
         if(message.device == "list"){
             console.log("loading chart");
             loadChart(message.table);
+        }else{
+           var temp = document.getElementById("tempicon");
+           var tempdec = document.getElementById("tempdecimal");
+           var splittedtemp = message.temperature.split(".");
+           temp.innerHTML = message.temperature;
+          // tempdec.innerHTML = "."+splittedtemp[1];
+           
         }
-        log.innerHTML = message.temperature;
+       // log.innerHTML = message.temperature;
+       
     };
 };
 

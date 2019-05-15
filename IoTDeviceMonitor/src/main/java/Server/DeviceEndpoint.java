@@ -33,7 +33,7 @@ import javax.websocket.server.ServerEndpoint;
 public class DeviceEndpoint {
     public Session session;
     private static final Set<DeviceEndpoint> clientEndpoints = new CopyOnWriteArraySet<>();
-    private static MqttListener mqtt = new MqttListener("m24.cloudmqtt.com", "12530", "ofqhaueq", "c6lwyXwW_8AQ", clientEndpoints);
+    private static MqttListener mqtt = new MqttListener("postman.cloudmqtt.com", "18986", "wbxcsrlx", "1gbNtqwbGAbj", clientEndpoints);
     private static SQLDao db = new SQLDao();
     @OnOpen
     public void onOpen(Session session) 
