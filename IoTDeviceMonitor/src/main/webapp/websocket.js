@@ -35,6 +35,14 @@ function getList(){
     });
     ws.send(json);
 }
+
+function printList(list){
+    var text = "<table><tr><th>Temperature </th><th>Humidity </th></tr></table>";
+    for(var i=0; i<10; i++){
+        text += "<tr><td>Temperature is: "+list[i].temperature+" </td><td>Humidity is: "+list[i].humidity+"</td><td>Humidity is: "+list[i].created+"</td></tr>"+"<br>"
+    }
+    document.getElementById("printList").innerHTML = text;
+}
 window.onbeforeunload = function() {
     ws.onclose = function () {}; // disable onclose handler first
     ws.close();
@@ -47,7 +55,8 @@ window.onload = function(){
         var message = JSON.parse(event.data);
         if(message.device == "list"){
             console.log("loading chart");
-            loadChart(message.table);
+            printList(message.table);
+            //loadChart(message.table);
         }else{
           
            var splittedtemp = message.temperature.split(".");

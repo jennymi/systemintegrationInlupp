@@ -53,8 +53,6 @@ public class DeviceEndpoint {
                 System.out.println("list equals");
             Message ret = db.getDBList();
                 System.out.println("sending message: " + ret);
-            ret = new Message();
-            ret.setTemperature("45");
                 //broadcast(ret);
                 session.getBasicRemote().sendObject(ret);
             }
