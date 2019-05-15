@@ -41,11 +41,11 @@ function printList(){
     var json = JSON.stringify({
         "device":"list"
     });
-    var text = "";
+    var text = "<table><tr><th>Temperature </th><th>Humidity </th></tr></table>";
     var temp = 23;
     var hum = 43;
     for(var i=0; i<10; i++){
-        text += "<table><tr><th>Temperature </th><th>Humidity </th></tr><tr><td>Temperature is: "+temp+" </td><td>Humidity is: "+hum+"</td></tr></table>"+"<br>"
+        text += "<tr><td>Temperature is: "+temp+" </td><td>Humidity is: "+hum+"</td></tr>"+"<br>"
     }
     document.getElementById("printList").innerHTML = text;
     
