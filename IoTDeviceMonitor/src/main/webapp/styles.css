@@ -114,3 +114,7 @@ td, th {
   text-align: left;
   font-size: 26px;
 }
+#chartdiv {
+  width: 100%;
+  height: 500px;
+}
